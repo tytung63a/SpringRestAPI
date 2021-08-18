@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	
+	<div th:replace="@{common/menu_admin.html}"></div>
+	
+	<ul th:each="obj: ${list}" th:object="${obj}">
+		<li th:text="*{id}"></li>
+		<li th:text="*{name}"></li>
+		<li th:text='*{ available > 0 ? "Con hang" : "Het hang"}'></li>
+		<li><a th:href=${obj.image}><img th:src=@{obj.image}/>Go Image</a></li>
+		<li th:text="*{price}"></li>
+		<li th:text="*{#dates.format(createDate, 'dd-MM-yyyy')}"></li>
+	</ul>
+	
+	<form th:action="@{/admin/create}" method="POST">
+	  <label for="fname">First name:</label><br>
+	  <input type="text" id="fname" name="fname" value="John"><br>
+	  <label for="lname">Last name:</label><br>
+	  <input type="text" id="lname" name="lname" value="Doe"><br><br>
+	  <input type="submit" value="Submit">
+	</form> 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div th:replace="@{common/footer_admin.html}"></div>
+	
+</body>
+</html>

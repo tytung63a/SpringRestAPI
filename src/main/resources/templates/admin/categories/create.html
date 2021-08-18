@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+<div th:replace="@{common/menu_admin.html}"></div>
+<div class="row">
+	<div class="col-12">
+		<div class="col-6 offset-3">
+			<form th:action="@{/admin/categories/create}" th:object="${categoryForm}" method="post">
+				<div class="mt-3">
+					Form Create Category
+				</div>
+				<div class="mt-3">
+					<label class="form-label">Name</label>
+					<input type="text" th:field="*{name}" class="form-control"/>
+					<p class="errors" th:errors="*{name}" />
+				</div>
+				
+				
+				<div class="mt-3">
+					<button type="submit" class="btn btn-primary mb-3">Submit
+					</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<div th:replace="@{common/footer_admin.html}"></div>
+</body>
+</html>
