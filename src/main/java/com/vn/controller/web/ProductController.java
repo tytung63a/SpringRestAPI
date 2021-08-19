@@ -72,6 +72,8 @@ public class ProductController {
 			rAttributes.addFlashAttribute("message", "Create Product is successfuly with id: " + vo.getId());
 			return "redirect:/admin/products";
 		} else {
+			List<CategoryVO> list = categoryService.readAll();
+			model.addAttribute("categories", list);
 			return "admin/products/create";
 		}
 	}
