@@ -22,7 +22,7 @@ public class CustomerRole {
 	private Integer id;
 
 	@ManyToOne
-	@JoinColumn(name = "customer_id")
+	@JoinColumn(name = "customer_username")
 	private Customer customer;
 
 	@ManyToOne

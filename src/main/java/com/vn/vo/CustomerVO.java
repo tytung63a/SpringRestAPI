@@ -13,22 +13,17 @@ import lombok.NoArgsConstructor;
 public class CustomerVO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	private int id;
-
 	private byte actived;
-
-	private byte admin;
-
+	
 	private String email;
 
 	private String fullname;
 
 	private String password;
 
-	private String photo;
-
 	private String username;
+	
+	private List<CustomerRole> customerRoles;
 
-	private List<OrderVO> ordersVO;
 
 }

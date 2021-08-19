@@ -7,7 +7,6 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotBlank;
 
-import org.hibernate.validator.constraints.Length;
 import org.springframework.web.multipart.MultipartFile;
 
 import lombok.AllArgsConstructor;
@@ -31,6 +30,7 @@ public class ProductVO implements Serializable {
 	
 	private String imagetext;
 
+	@NotBlank(message = "Không được bỏ trống")
 	private String name;
 
 	private double price;

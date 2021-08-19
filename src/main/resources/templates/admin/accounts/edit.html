@@ -8,42 +8,50 @@
 <div class="row">
 	<div class="col-12">
 		<div class="col-6 offset-3">
-			<form th:action="@{/admin/products/create}" th:object="${productForm}" enctype="multipart/form-data" method="post">
+			<form method="post"
+				th:href="@{|/admin/products/edit/*{id}|}" th:object="${productForm}" enctype="multipart/form-data">
 				<div class="mt-3">
-					Form Create Product
+					Form Edit Product
 				</div>
+				
+				<div class="mt-3">
+					<label class="form-label">ID</label>
+					<input type="text" disabled="disabled" class="form-control" th:value="*{id}" name="id"/>
+					
+				</div>
+				
 				<div class="mt-3">
 					<label class="form-label">Name</label>
 					<input type="text" th:field="*{name}" class="form-control"/>
-					<p class="errors" th:errors="*{name}" />
+					<p th:errors="*{name}" />
 				</div>
 				
 				<div class="mt-3">
 					<label class="form-label">Price</label>
-					<input type="number" th:field="*{price}" class="form-control"/>
-					<p class="errors" th:errors="*{price}" />
+					<input type="text" th:field="*{price}" class="form-control"/>
+					<p th:errors="*{name}" />
 				</div>
 				
 				<div class="mt-3">
 					<label class="form-label">Image</label>
 					<input type="file" th:field="*{image}" class="form-control"/>
-					<p class="errors" th:errors="*{image}" />
+					<p th:errors="*{name}" />
 				</div>
 				
 				<div class="mt-3">
 					<label class="form-label">Available</label>
-					<input type="number" th:field="*{available}" class="form-control"/>
-					<p class="errors" th:errors="*{available}" />
+					<input type="text" th:field="*{available}" class="form-control"/>
+					<p th:errors="*{name}" />
 				</div>
 				
 				<div class="mt-3">
 					<label class="form-label">Category Name</label>
 					<select class="form-select" th:field="*{category_id}">
+                         <option value=""> Chọn Tên Danh Mục </option>
                          <option th:each="cate : ${categories}"
                             th:value="${cate.id}"
                             th:utext="${cate.name}"/>
                   </select>
-                  <p class="errors" th:text="${message}" />
 				</div>
 				
 				
@@ -51,6 +59,7 @@
 					<button type="submit" class="btn btn-primary mb-3">Submit
 					</button>
 				</div>
+
 			</form>
 		</div>
 	</div>

@@ -1,7 +1,6 @@
 package com.vn.entities;
 
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,7 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -49,9 +47,6 @@ public class Product {
 
 	@Column
 	private double price;
-
-	@OneToMany(mappedBy = "product")
-	private List<Orderdetail> orderDetails;
 
 	@ManyToOne
 	@JoinColumn(name = "category_id")
