@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<div th:replace="@{common/menu_admin.html}"></div>
+
+<h3>Đăng nhập thành công</h3>
+<div th:text="${xinchao}" class="message"></div>
+<div th:text="${info}" class="message"></div>
+</body>
+</html>

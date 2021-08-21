@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Home Page</title>
+</head>
+<body>
+<div th:replace="@{common/menu_homepage.html}"></div>
+<section class="py-5">
+	<div class="container px-4 px-lg-5 mt-5">
+		<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+			<div th:each="obj: ${list}" th:object="${obj}">
+				<div class="col mb-5">
+					<div class="card h-100">
+						<!-- Product image-->
+						<img th:src="@{|/images/*{imagetext}|}" alt="vui long refesh thu muc" class="thumb1" />
+
+						<div class="card-body p-4">
+							<div class="text-center">
+								<!-- Product name-->
+								<h5 th:utext="*{name}" class="fw-bolder"></h5>
+								<p th:text="*{price}"></p>
+								<p th:text='*{ available > 0 ? "Con hang" : "Het hang"}'></p>
+							</div>
+						</div>
+
+						<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+							<div class="text-center">
+								<a class="btn btn-outline-dark mt-auto" th:href="@{|/admin/products/edit/*{id}|}">View
+									options</a>
+							</div>
+							<br>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+</body>
+</html>

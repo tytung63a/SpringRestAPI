@@ -2,9 +2,6 @@ package com.vn.vo;
 
 import java.io.Serializable;
 
-import com.vn.entities.Customer;
-import com.vn.entities.Role;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,15 +9,21 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CustomerRole implements Serializable {
+public class AppUserVO implements Serializable {
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
+	private Long userId;
 
-	private Integer id;
+	private String userName;
 
-	private Customer customer;
+	private String encrytedPassword;
 
-	private Role role;
+	private boolean enabled;
+	
+	private Long role_id;
+
 }

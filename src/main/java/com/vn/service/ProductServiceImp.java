@@ -26,6 +26,11 @@ public class ProductServiceImp implements ProductService {
 	CategoryRepository categoryRepository;
 	
 	@Override
+	public Optional<Product> findById(Integer id) {
+		return productRepository.findById(id);
+	}
+	
+	@Override
 	public List<ProductVO> readAll() {
 		List<ProductVO> voList = new ArrayList<ProductVO>();
 		List<Product> entities = productRepository.findAll();

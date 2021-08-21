@@ -1,7 +1,9 @@
 package com.vn.service;
 
 import java.util.List;
+import java.util.Optional;
 
+import com.vn.entities.Product;
 import com.vn.vo.ProductVO;
 
 public interface ProductService {
@@ -15,6 +17,8 @@ public interface ProductService {
 	ProductVO delete(Integer id);
 
 	ProductVO update(ProductVO vo);
+
+	Optional<Product> findById(Integer id);
 
 
 }

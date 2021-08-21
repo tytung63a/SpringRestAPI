@@ -5,6 +5,8 @@ import java.nio.file.Paths;
 import java.text.ParseException;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -43,7 +45,6 @@ public class ProductController {
 			// TODO: handle exception
 		}
 		model.addAttribute("title", "List Products");
-
 		return "admin/products/list";
 	}
 
@@ -57,7 +58,7 @@ public class ProductController {
 	}
 
 	@PostMapping("/create")
-	public String saveProduct(@Validated @ModelAttribute("productForm") ProductVO vo, BindingResult bindingResult,
+	public String saveProduct(@Validated @ModelAttribute("productForm") ProductVO vo,HttpServletResponse res, BindingResult bindingResult,
 			@RequestParam(name = "image") MultipartFile multipartFile, RedirectAttributes rAttributes, Model model)
 			throws IllegalAccessException, InvocationTargetException, ParseException {
 		String path = System.getProperty("user.dir"); // lấy đường dẫn của thư mục
@@ -102,6 +103,8 @@ public class ProductController {
 			rAttributes.addFlashAttribute("message", "Edit Product is successfuly with id: " + vo.getId());
 			return "redirect:/admin/products";
 		} else {
+			List<CategoryVO> list = categoryService.readAll();
+			model.addAttribute("categories", list);
 			return "admin/products/edit";
 		}
 

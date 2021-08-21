@@ -4,23 +4,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.vn.service.ProductService;
 
-@Controller(value = "web_HomeController")
-@RequestMapping("/web")
-public class HomeController {
-	
+@Controller
+public class HomePageController {
+
 	@Autowired
 	private ProductService productService;
-	
-	@GetMapping("/home")
+
+	@GetMapping("/homepage")
 	public String homePage(Model model) {
-		model.addAttribute("list",productService.readAll());
-		model.addAttribute("obj",productService.readAll().get(0));
-		model.addAttribute("message", "Admin Template");
-		return "home/index";
+		try {
+			model.addAttribute("list", productService.readAll());
+			model.addAttribute("obj", productService.readAll().get(0));
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return "home/homePage";
+
 	}
-	
+
 }
