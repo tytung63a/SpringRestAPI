@@ -26,6 +26,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	public void configure(AuthenticationManagerBuilder auth) throws Exception {
+		//AuthenticationManagerBuilder để quản lý thông tin người dùng
 		// tìm kiếm User trong Database.
 		// userdetailservice mình viết riêng để lấy thông tin user pass và role
 		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
@@ -41,7 +42,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 																												// cho
 																												// phép
 
-		http.authorizeRequests().antMatchers("/admin/categories**").access("hasRole('ROLE_ADMIN')"); // chỉ admin được vào
+		http.authorizeRequests().antMatchers("/admin/categories/**").access("hasRole('ROLE_ADMIN')"); // chỉ admin được vào
 		http.authorizeRequests().antMatchers("/admin/products/**","/loginSuccess").access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"); 
 
 		// đăng nhập ko đúng vai trò thì gọi tới getmaaping bên troller, troller trả về 1 trang ta cấu hình và kèm thông báo
