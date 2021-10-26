@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+	
+	<div th:replace="@{common/menu_admin.html}"></div>
+
+
+	<div>
+		<br>
+		<div class="col-2 d-flex justify-content-end">
+			<a href="/admin/products/create"
+				class="btn btn-primary"> CREATE PRODUCT </a>
+		</div>
+		<br>
+
+		<div th:text="${message}" class="message"></div>
+		<table class="table table-hover">
+			<thead class="text-center">
+				<tr>
+					<th><a
+						href="@{|/admin/categories?field=id|}">ID
+							<i class="fas fa-sort-amount-down"></i>
+					</a></th>
+					<th><a
+						href="@{|/admin/categories?field=name|}">NAME
+							<i class="fas fa-sort-amount-down"></i>
+					</a></th>
+					<th>PRICE</th>
+					<th>IMAGE</th>
+					<th>AVAILABLE</th>
+					<th>CREATE DATE</th>
+					<th>CATEGORY ID</th>
+					<th>ACTION</th>
+				</tr>
+			</thead>
+
+			<tbody class="text-center">
+					<tr th:each="obj: ${list}" th:object="${obj}">
+						<td th:text="*{id}"></td>
+						<td th:text="*{name}"></td>
+						<td th:text="*{price}"></td>
+						<td>
+							<img th:src="@{|/images/*{imagetext}|}" class="thumb1">
+						</td>
+						<td th:text="*{available}"></td>
+						<td th:text="*{#dates.format(createDate, 'EEE dd/MM/yyyy')}"></td>
+						<td th:text="*{category_id}"></td>
+						<td><a
+							th:href="@{|/admin/products/edit/*{id}|}"
+							class="btn btn-info"><i class="fas fa-edit fa-lg"></i></a> &emsp;
+							 <a
+							th:href="@{|/admin/products/delete/*{id}|}"
+							class="btn btn-danger"
+							onclick="return confirm('Are you sure you want to Remove?');"><i
+								class="fas fa-trash fa-lg"></i></a>
+						</td>
+					</tr>
+			</tbody>
+
+		</table>
+		
+	</div>
+	
+	
+	
+	<div th:replace="@{common/footer_admin.html}"></div>
+	
+</body>
+</html>

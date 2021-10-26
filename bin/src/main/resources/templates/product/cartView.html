@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Giỏ Hàng</title>
+
+</head>
+<body>
+	<div th:replace="@{common/menu_homepage.html}"></div>
+	>
+	<br>
+	<div class="d-flex justify-content-center">
+		<div class="container">
+			<h2>List Products</h2>
+			<div class="rows">
+				<div class="col-sm-9">
+					<table class="table table-bordered">
+						<thead>
+							<tr>
+								<th>ID</th>
+								<th>Tên Hàng</th>
+								<th>Giá</th>
+								<th>Số Lượng</th>
+								<th>Tổng Tiền</th>
+								<th>Hành Động</th>
+							</tr>
+						</thead>
+						<tbody>
+						<form th:action="@{/shoppingcart/update}" method="get">
+							<tr th:each="obj: ${list}" th:object="${obj}">
+								<input type="hidden" name="id" th:value="${obj.producID}" />
+								<td th:text="*{producID}"></td>
+								<td th:text="*{name}"></td>
+								<td th:text="*{price}"></td>
+								<td><input name="qty" th:value="*{qty}"
+									onblur="this.form.submit()" style="width: 50px;"></td>
+								<td th:text="*{price*qty}"></td>
+								<td><a class="btn btn-primary btn-sm"
+									th:href="@{|/shoppingcart/delete/*{producID}|}"
+									onclick="return confirm('Are you sure you want to Remove?');">
+										Xóa</a></td>
+							</tr>
+							</form>
+						</tbody>
+					</table>
+					<p th:utext="${amount}">Tổng Tiền :</p>
+					<hr />
+					<a class="btn btn-primary btn-sm" th:href="@{/shoppingcart/clear}"
+						onclick="return confirm('Are you sure you want to Remove?');">
+						Xóa Tất Cả</a> <a class="btn btn-primary btn-sm" href="/homepage">Mua
+						Thêm</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<br>
+	<br>
+</body>
+</html>
